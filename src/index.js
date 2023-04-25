@@ -51,7 +51,7 @@ searchEl.addEventListener(
       `;
     }
 
-    if (countries.lenght === undefined && !fetchCountries.ok) {
+    if (countries.lenght === 0) {
       Notiflix.Notify.failure('Oops, there is no country width that name.');
       clearResult();
       return;

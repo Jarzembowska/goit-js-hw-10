@@ -1,3 +1,5 @@
+import Notiflix from 'notiflix';
+
 const API_URL = 'https://restcountries.com/v3.1/name/';
 
 export const fetchCountries = name => {
@@ -5,9 +7,5 @@ export const fetchCountries = name => {
   //i przekazuje obietnicę. której wynikiem będzie tablica krajów
   return fetch(
     `${API_URL}/${name}?fields=name,capital,population,flags,languages`
-  ).then(res => {
-    if (res.ok) {
-      return res.json();
-    }
-  });
+  ).then(res => res.json());
 };
