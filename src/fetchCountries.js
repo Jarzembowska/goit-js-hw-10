@@ -7,5 +7,16 @@ export const fetchCountries = name => {
   //i przekazuje obietnicę. której wynikiem będzie tablica krajów
   return fetch(
     `${API_URL}/${name}?fields=name,capital,population,flags,languages`
-  ).then(res => res.json());
+  )
+    .then(res => {
+      if (res.ok) {
+        res.json();
+      }
+      if (!res.ok) {
+        throw new Error(response.status);
+      }
+    })
+    .catch(error =>
+      Notiflix.Notify.failure('Oops, there is no country with that name')
+    );
 };

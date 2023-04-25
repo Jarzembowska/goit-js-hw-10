@@ -19,6 +19,7 @@ searchEl.addEventListener(
   // aby nie było wielu zagnieżdżeń this dodajemy async oraz await
   _.debounce(async ev => {
     const countryName = ev.target.value.trim();
+    console.log(countryName);
     //sanityzacja wprowadzonego przez użytkownika ciągu metodą trim, rozwiązuje problem, gdy w polu wprowadza się same spacje lub są one na początku lub końcu wprowadzanego ciągu liter
 
     if (countryName === '') {
@@ -31,6 +32,11 @@ searchEl.addEventListener(
     }
 
     const countries = await fetchCountries(countryName);
+
+    if (!countries) {
+      clearResult();
+      return;
+    }
 
     if (countries.length > 10) {
       Notify.info('Too many matches found. Please enter a more specific name.');
@@ -50,13 +56,6 @@ searchEl.addEventListener(
       <p>Languages: ${Object.values(countries[0].languages).join(', ')}</p>
       `;
     }
-
-    if (countries.lenght === 0) {
-      Notiflix.Notify.failure('Oops, there is no country width that name.');
-      clearResult();
-      return;
-    }
-
     console.log(countries);
   }, DEBOUNCE_DELAY)
 );
