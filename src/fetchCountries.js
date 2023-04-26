@@ -10,7 +10,7 @@ export const fetchCountries = name => {
   )
     .then(res => {
       if (res.ok) {
-        res.json();
+        return res.json();
       }
       if (!res.ok) {
         throw new Error(response.status);
