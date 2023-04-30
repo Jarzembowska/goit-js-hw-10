@@ -3,18 +3,120 @@
 }
 
 body {
+  margin: 0;
+  padding: 0 15px;
+  width: 100%;
+  height: 100vh;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #fafafa;
+  /* background-color: #fafafa; */
   color: #212121;
   line-height: 1.5;
+  background-image: linear-gradient(to right top, #9eb3d3, #8dcae1, #8ededc, #aeeeca, #e4f8b8);
+  background-repeat: no-repeat;
+
 }
 
+main {
+  position: relative;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100vh;
+}
+
+
 #search-box {
+  position: absolute;
+  top: 15%;
+  left: 40%;
+  transform: translate(-50%, -50%);
   font: inherit;
   padding: 8px;
   max-width: 320px;
-  margin-bottom: 16px;
+  margin: 0;
+  border: 2px solid #eee;
+  border-radius: 8px;
+  box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+}
+
+
+
+.country-list {
+  position: absolute;
+  top: 40%;
+  left: 40%;
+  transform: translate(-50%, -50%);
+  margin: 0px;
+  padding: 0;
+  list-style: none;
+}
+
+.country-list__element {
+  display: flex;
+  column-gap: 10px;
+  align-items: center;
+  max-height: 30px;
+  margin: 5px;
+  padding: 15px 0;
+}
+
+.country-elem__image {
+  width: 30px;
+  height: 100%;
+}
+
+.country-elem__text {
+  margin: 0;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.country-info {
+  position: absolute;
+  top: 25%;
+  left: 30%;
+  width: 100%;
+}
+
+.country-info__header {
+  display: flex;
+  align-items: center;
+  column-gap: 5px;
+}
+
+.country-info__flag {
+  width: 30px;
+  height: 100%;
+}
+
+.country-info__name {
+  font-weight: 600;
+  font-size: 25px;
+  margin: 0;
+}
+
+.country-info__details-list {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  row-gap: 15px;
+}
+
+.details-list__elem {
+  column-gap: 5px;
+}
+
+.details-list__name {
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.details-list__value {
+  font-weight: 400;
+  font-size: 20px;
 }

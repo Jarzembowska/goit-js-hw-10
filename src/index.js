@@ -41,20 +41,40 @@ searchEl.addEventListener(
     if (countries.length > 10) {
       Notify.info('Too many matches found. Please enter a more specific name.');
     } else {
+      clearResult();
       countryListEl.innerHTML = countries
-        .map(
-          country =>
-            `<li><img margin-right="10px" width="24" height="16" src="${country.flags.png}"/>${country.name.common} </li>`
-        )
+        .map(country => {
+          const svgLink = country.flags.svg; //country.flags.png
+          const name = country.name.official; // nazwa "official" to Republik of Poland a nazwa "common" to Poland
+          return `<li class='country-list__element'><img class='country-elem__image' src="${svgLink}" alt='country flag' width="50" height="50" /><p class='country-elem__text'>${name}</p> </li>`;
+        })
         .join('');
     }
 
     if (countries.length === 1) {
-      countryInfo.innerHTML = `
-      <p>Capital: ${countries[0].capital}</p>
-      <p>Population: ${countries[0].population}</p>
-      <p>Languages: ${Object.values(countries[0].languages).join(', ')}</p>
-      `;
+      clearResult();
+      countryInfo.innerHTML = countries.map(country => {
+        const svgLink = country.flags.svg;
+        const name = country.name.official;
+        return `
+        <div class='country-info__header'><img class="country-info__flag" src="${svgLink}" alt='country flag' width="50" height="50" /><p class="country-info__name" >${name}</p></div>
+        <ul class='country-info__details-list'>
+        <li class='details-list__elem' ><span class='details-list__name'>Capital: </span><span class='details-list__value'> ${
+          countries[0].capital
+        }</span></li>
+
+
+        <li class='details-list__elem' ><span class='details-list__name'>Population: </span><span class='details-list__value'> ${
+          countries[0].population
+        }</span></li>
+
+
+        <li class='details-list__elem' ><span class='details-list__name'>Languages: </span><span class='details-list__value'> ${Object.values(
+          countries[0].languages
+        ).join(', ')}</span></li>
+        </ul>
+        `;
+      });
     }
     console.log(countries);
   }, DEBOUNCE_DELAY)
